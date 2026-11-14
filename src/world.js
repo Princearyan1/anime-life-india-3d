@@ -22,9 +22,12 @@ export class VillageWorld{
  for(let i=0;i<40;i++){box(this.scene,140,.04,-140+i*9,4,.12,.25,this.wood);}for(const x of [138.5,141.5])box(this.scene,x,.14,35,.12,.12,350,material(0x636767,{metalness:.7}));}
  house(x,z,w=9,d=8,color=0xd6bb8d,name=''){const g=new T.Group();g.position.set(x,0,z);this.scene.add(g);const wall=this.wall.clone();wall.color.set(color);const h=3.3,door=1.7;
  box(g,0,.12,0,w+.5,.24,d+.6,material(0x9b9279));box(g,0,h/2,-d/2,w,h,.35,wall);box(g,-w/2,h/2,0,.35,h,d,wall);box(g,w/2,h/2,0,.35,h,d,wall);for(const side of [-1,1])box(g,side*(w+door)/4,h/2,d/2,(w-door)/2,h,.35,wall);box(g,0,2.95,d/2,door,.7,.35,wall);box(g,0,.28,0,w,.1,d,material(0xb89d77));
+ // Close the gable below the sloped roof, including the wider family home.
+ const peak=3.8+w/4*Math.tan(.24),gableMat=wall.clone();gableMat.side=T.DoubleSide;
+ for(const side of [-1,1]){const geo=new T.BufferGeometry();geo.setAttribute('position',new T.Float32BufferAttribute([-w/2,3.25,side*d/2,w/2,3.25,side*d/2,0,peak,side*d/2],3));geo.setAttribute('uv',new T.Float32BufferAttribute([0,0,1,0,.5,1],2));geo.computeVertexNormals();const m=new T.Mesh(geo,gableMat);m.castShadow=m.receiveShadow=true;g.add(m);}
  // Pitched terracotta roof, ridge and raised veranda.
  for(const side of [-1,1]){const r=box(g,side*w/4,3.8,0,w/2+.7,.18,d+1.4,this.roof);r.rotation.z=-side*.24;for(let k=0;k<12;k++)box(g,side*w/4,3.81+(k%2)*.015,-d/2+k*(d/11),w/2+.7,.055,.08,this.roof).rotation.z=-side*.24;}
- box(g,0,4.4,0,.16,.12,d+1.5,this.roof);for(const side of [-1,1]){box(g,side*(w/2-.6),1.4,d/2+1,.12,2.8,.12,this.wood);box(g,side*w*.3,1.8,d/2+.2,1.2,1.2,.08,this.dark);box(g,side*w*.3,1.8,d/2+.27,.06,1.2,.04,this.wood);box(g,side*w*.3,1.8,d/2+.27,1.2,.06,.04,this.wood);}box(g,0,2.85,d/2+.8,w+1,.14,2,this.roof);
+ box(g,0,peak+.06,0,.16,.12,d+1.5,this.roof);for(const side of [-1,1]){box(g,side*(w/2-.6),1.4,d/2+1,.12,2.8,.12,this.wood);box(g,side*w*.3,1.8,d/2+.2,1.2,1.2,.08,this.dark);box(g,side*w*.3,1.8,d/2+.27,.06,1.2,.04,this.wood);box(g,side*w*.3,1.8,d/2+.27,1.2,.06,.04,this.wood);}box(g,0,2.85,d/2+.8,w+1,.14,2,this.roof);
  if(name)sign(g,name,0,2.35,d/2+1.05,Math.min(w-1,5));
  for(const [cx,cz,cw,cd] of [[x,z-d/2,w,.4],[x-w/2,z,.4,d],[x+w/2,z,.4,d],[x-(w+door)/4,z+d/2,(w-door)/2,.4],[x+(w+door)/4,z+d/2,(w-door)/2,.4]])this.solid(cx,cz,cw,cd);
  // Contrasting limewash plinth, carved doorway, timber lintel and shutters.
