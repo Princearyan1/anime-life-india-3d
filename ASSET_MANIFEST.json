@@ -1,5 +1,20 @@
 [
   {
+    "file": "public/assets/bark-diff.jpg",
+    "bytes": 729893,
+    "sha256": "4213441aebcb72b9911f5a860e9ce74a61a8f6ce3b9c23d1f204173e7e7f6066"
+  },
+  {
+    "file": "public/assets/bark-nor_gl.jpg",
+    "bytes": 1226534,
+    "sha256": "9d1537b3429579436a62890bb7c5050a0172a15ce768787eacde81c5ccefc9cc"
+  },
+  {
+    "file": "public/assets/bark-rough.jpg",
+    "bytes": 201307,
+    "sha256": "4e7f62508cf77faebfeee15ffb571ff02c45c18d5174aa19fcb8b98506359c5c"
+  },
+  {
     "file": "public/assets/ground-diff.jpg",
     "bytes": 1206953,
     "sha256": "c598c555f13cd5328409fd5e2a45496a26e319e52299e3959042f1449c2f1b06"
@@ -13,6 +28,36 @@
     "file": "public/assets/ground-rough.jpg",
     "bytes": 644332,
     "sha256": "9f84b7e7b5fdd2ff9798645fdec243b994fced05e543692761994b793211b5d0"
+  },
+  {
+    "file": "public/assets/plaster-diff.jpg",
+    "bytes": 299230,
+    "sha256": "52d789111bbe93d311c22e49d28b56256593c8f84c75742642403da857a36503"
+  },
+  {
+    "file": "public/assets/plaster-nor_gl.jpg",
+    "bytes": 427268,
+    "sha256": "c0a41dc06e33072ec1156d89f3bd4b481a479616791d4e9df6c5ee7b3283db82"
+  },
+  {
+    "file": "public/assets/plaster-rough.jpg",
+    "bytes": 243061,
+    "sha256": "76587f1a3cf6bc009caaf3d1d7651ee52359e43ce91bf52e8a3ed07cff9db623"
+  },
+  {
+    "file": "public/assets/road-diff.jpg",
+    "bytes": 739513,
+    "sha256": "99b6f6bdfbd09279f3f550ac9593336df541aa2319537566eeb3e737d8512010"
+  },
+  {
+    "file": "public/assets/road-nor_gl.jpg",
+    "bytes": 1237059,
+    "sha256": "b745fd20cfb775ae907786ff0ffe200cedf73f3a6ef4e60c637b85b08e0a4f9a"
+  },
+  {
+    "file": "public/assets/road-rough.jpg",
+    "bytes": 344964,
+    "sha256": "147891957807bb03cc565c9daa8a16a4af7713449a0f475c638f78f833ad0646"
   },
   {
     "file": "public/assets/characters/ANIMATION-LICENSE.txt",

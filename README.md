@@ -1,6 +1,8 @@
 # Anime Life India 3D — Chandanpur
 
-A local, playable Three.js village story milestone for Windows desktop browsers. This is a stylized development build, **not a finished AAA game**. Day 1 and Day 2 are implemented; Days 3–10 are not.
+[Play in your browser](https://princearyan1.github.io/anime-life-india-3d/) · [GitHub source](https://github.com/Princearyan1/anime-life-india-3d)
+
+Version 0.2 is a playable Three.js village story milestone for Windows desktop browsers. This is a stylized development build, **not a finished AAA game**. Day 1 and Day 2 are implemented; Days 3–10 are not.
 
 ## Run on Windows
 
@@ -24,11 +26,11 @@ The ZIP includes `dist/`, so Live Server can serve that directory without instal
 
 ## Play
 
-- **W A S D**: move relative to camera; **Shift**: sprint; **Space**: jump; **Ctrl**: crouch.
+- **W A S D**: jog relative to camera; **Alt**: walk; **Shift**: sprint; **Space**: jump; **Ctrl**: crouch.
 - Click the world to capture the mouse. Move the mouse to look; **Esc** releases capture and pauses. Right-button drag and arrow keys are camera fallbacks.
 - **Mouse wheel**: zoom. Optional shoulder camera is in Settings.
 - **E**: interact within four metres of the gold objective; **F**: board the bus when prompted.
-- **M**: map; click a destination to place a blue waypoint. **Tab**: journal. **I**: inventory and relationships.
+- **M**: map; click a destination to place a blue waypoint and a collision-aware route. Close the map to keep following the blue line, arrowheads, compass instruction and remaining distance on the minimap. Gold routes follow the active story objective when no personal waypoint is set. The map has a directions toggle and Clear waypoint button. **Tab**: journal. **I**: inventory and relationships.
 - **Esc**: pause, save, settings, or exit to menu.
 
 Start at the charpai. Follow the gold marker to the washing area, bathing enclosure, Dadi, kitchen, and school bus. Enter the school through its front doorway. The school activity advances the clock to 11:30. Return by bus, eat lunch, ask the clinic nurse for adult help, deliver the sealed kit, buy groceries, hear Dadi's story, and sleep to unlock the festival chapter.
@@ -45,10 +47,11 @@ Reset Progress and New Game ask for confirmation inside the game. Use the pause 
 
 - `src/story.js`: declarative chapters, event-driven mission validation, inventory transactions, save validation.
 - `src/world.js`: original village geometry, colliders, instanced foliage, bus, rain, signs and textures.
-- `src/characters.js`: licensed glTF rigs, skeletal animation blending, original simplified clothing materials.
+- `src/characters.js`: licensed glTF rigs, skeletal animation blending, rest-pose rotation retargeting, skin-weight-aware clothing colors, Indian sari/kurta/salwar meshes, head details and accessories.
 - `src/main.js`: input, third-person camera, physics approximation, bus routes, activity transitions, HUD, menus, audio cues and integration.
-- `src/qa.js`: optional collision-aware A* traversal for browser integration checks.
-- `tests/story.test.js`: progression, gating, purchases, save validation, and day transitions.
+- `src/navigation.js`: shared A* walking paths for minimap and integration checks.
+- `src/travel.js`: shared bus route and full vehicle footprint collision.
+- `tests/story.test.js` and `tests/navigation.test.js`: progression, gating, purchases, save validation, and day transitions.
 - `scripts/`: dependency-free local server and offline static packager.
 - `public/assets/`: integrated assets and bundled licenses.
 
@@ -59,3 +62,9 @@ Visit `http://127.0.0.1:5173/?qa=1` and click **Run both chapters**. This opt-in
 ## Credits and scope
 
 Read `ASSET_CREDITS.md` for licenses and modifications; `KNOWN_LIMITATIONS.md` records the remaining work. No PUBG/BGMI assets, logos, animations, or proprietary content are included.
+
+## Village edition 0.2
+
+Seventeen NPCs including both Day 2 sellers, patterned Indian outfits and accessories, smoother jog/sprint animation, bus body collision and cleared road layout, detailed school bus with seats/windows/opening door, asphalt/plaster/bark PBR textures, leaf-card trees, courtyard gate/rangoli/tulsi and improved house trim. Static scenery is batched by material. Graphics remain stylized.
+
+GitHub Actions runs tests, builds the static site and deploys GitHub Pages on pushes to main. The local character inspector is `tests/characters.html` while the development server runs.

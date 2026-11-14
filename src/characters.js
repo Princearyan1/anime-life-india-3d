@@ -1,18 +1,61 @@
 import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {clone} from 'three/addons/utils/SkeletonUtils.js';
-import {box,material} from './world.js';
+import {material} from './world.js';
 const base='./public/assets/characters/';
+const profiles={
+ Aarav:{skin:0xa87450,shirt:0x326a83,trim:0xd8c295,young:true},
+ 'Sweet seller':{skin:0xa27350,shirt:0xf3dfb0,trim:0xb86631,kurta:true,moustache:true},
+ 'Tea seller':{skin:0x97623e,shirt:0x99ada0,trim:0x704b33,moustache:true},
+ Mother:{skin:0xa16b49,shirt:0xad493d,trim:0xeabf65,sari:true,bun:true},
+ Dadi:{skin:0x9c7157,shirt:0xc7c5ac,trim:0x7c7686,sari:true,bun:true,grey:true},
+ Father:{skin:0x9c6746,shirt:0xe1d5b7,trim:0x8c6b4c,kurta:true,moustache:true},
+ 'Gupta ji':{skin:0xa67855,shirt:0xb79962,trim:0xe7d7b2,moustache:true},
+ 'Nurse Meera':{skin:0xa57253,shirt:0xf2eddd,trim:0x387f7d,sari:true,bun:true},
+ Teacher:{skin:0xa77956,shirt:0x365a86,trim:0xd8b65b,sari:true,bun:true},
+ Bua:{skin:0x95603f,shirt:0x9e4974,trim:0xe1ae5a,sari:true,bun:true},
+ Mausi:{skin:0xb28060,shirt:0x417668,trim:0xe9c277,sari:true,bun:true},
+ Didi:{skin:0xac7859,shirt:0xd69345,trim:0x9f354e,salwar:true,braid:true},
+ Uncle:{skin:0xa27350,shirt:0xdad9c5,trim:0x627b6e,kurta:true,moustache:true},
+ Farmer:{skin:0x885b3e,shirt:0xe6d8b2,trim:0xa54234,kurta:true,moustache:true,turban:true},
+ Ramesh:{skin:0xb18462,shirt:0x8b9e8b,trim:0x534b3b,moustache:true},
+ Kabir:{skin:0x9e6e4c,shirt:0xe7e7dc,trim:0x274469,young:true},
+ Student:{skin:0xac7851,shirt:0xebe6d5,trim:0x2e4870,young:true,braid:true},
+ Villager:{skin:0x956648,shirt:0x966b4d,trim:0xc6bc93,moustache:true}
+};
+function clothTexture(color,trim){const c=document.createElement('canvas');c.width=c.height=128;const ctx=c.getContext('2d');ctx.fillStyle='#'+new T.Color(color).getHexString();ctx.fillRect(0,0,128,128);ctx.fillStyle='#'+new T.Color(trim).getHexString();ctx.fillRect(0,0,128,8);ctx.fillRect(0,120,128,8);for(let y=16;y<118;y+=15)for(let x=6;x<128;x+=16){ctx.beginPath();ctx.moveTo(x,y-2);ctx.lineTo(x+2,y);ctx.lineTo(x,y+2);ctx.lineTo(x-2,y);ctx.fill();}ctx.fillStyle='#ffffff12';for(let x=0;x<128;x+=3)ctx.fillRect(x,0,1,128);const map=new T.CanvasTexture(c);map.colorSpace=T.SRGBColorSpace;return map;}
 export class Characters{
- async load(progress){const l=new GLTFLoader();const files=['Superhero_Male_FullBody.gltf','Superhero_Female_FullBody.gltf','animations.glb'];let n=0;const data=await Promise.all(files.map(f=>l.loadAsync(base+f).then(v=>{progress(++n/3);return v;})));this.models={male:data[0].scene,female:data[1].scene};this.clips=data[2].animations;}
- create(sex='male',color=0x759a8a,height=1.75){const root=new T.Group(),body=clone(this.models[sex]);root.add(body);body.updateMatrixWorld(true);let bounds=new T.Box3().setFromObject(body),size=bounds.getSize(new T.Vector3());const scale=height/size.y;body.scale.multiplyScalar(scale);body.position.y=-bounds.min.y*scale;body.updateMatrixWorld(true);const bodyMeshes=[];body.traverse(m=>{if(!m.isMesh)return;m.castShadow=true;m.frustumCulled=false;if(!m.name.toLowerCase().includes('eye')){m.geometry=m.geometry.clone();m.material=material(0xffffff,{vertexColors:true});bodyMeshes.push(m);}});
- const restMatrices=new Map(bodyMeshes.map(m=>[m,m.matrixWorld.clone()]));let lastOutfit=null;
- const recolor=(outfit)=>{if(lastOutfit===outfit)return;lastOutfit=outfit;for(const m of bodyMeshes){const pos=m.geometry.attributes.position,colors=[];for(let i=0;i<pos.count;i++){const v=new T.Vector3().fromBufferAttribute(pos,i).applyMatrix4(restMatrices.get(m));let c=v.y>height*.83?0x9b6745:v.y<height*.1?0x292e2c:v.y<height*.49?0x293f50:outfit==='uniform'?0xe8e5d8:outfit==='festival'?0xd4953d:color; // Simple opaque clothing color regions; base texture is replaced.
- if(Math.abs(v.x)>height*.32&&v.y<height*.68)c=0x9b6745;const co=new T.Color(c);colors.push(co.r,co.g,co.b);}m.geometry.setAttribute('color',new T.Float32BufferAttribute(colors,3));}};recolor('home');
- // Original simple hairstyle, attached to the head bone so it follows animation.
- const head=body.getObjectByName('Head');if(head){const hair=new T.Mesh(new T.SphereGeometry(.115,12,8),material(sex==='female'?0x24211f:0x30281e));hair.scale.set(1,.65,1.02);hair.position.set(0,.16,-.01);head.add(hair);hair.castShadow=true;}
- const bag=box(root,0,height*.62,-.2,.38,.48,.19,material(0x334b49));bag.visible=false;
- const mixer=new T.AnimationMixer(body);const actions={};for(const clip of this.clips){const tracks=clip.tracks.filter(t=>body.getObjectByName(t.name.split('.')[0]));if(tracks.length)actions[clip.name]=mixer.clipAction(new T.AnimationClip(clip.name,clip.duration,tracks));}let current=null;
- const play=name=>{if(!actions[name])name='Idle_Loop';if(current===name)return;const next=actions[name];if(!next)return;next.reset().play();if(current)next.crossFadeFrom(actions[current],.22,true);current=name;};play('Idle_Loop');return{root,body,mixer,actions,play,bag,outfit:name=>{recolor(name);bag.visible=name==='uniform';},update:dt=>mixer.update(dt)};
+ async load(progress){const l=new GLTFLoader();let n=0;const data=await Promise.all(['Superhero_Male_FullBody.gltf','Superhero_Female_FullBody.gltf','animations.glb'].map(f=>l.loadAsync(base+f).then(v=>{progress(++n/3);return v;})));this.models={male:data[0].scene,female:data[1].scene};this.clips=data[2].animations;this.animationRig=data[2].scene;}
+ create(sex='male',color=0x759a8a,height=1.75,name='Aarav'){
+  const profile=profiles[name]||{skin:0xa87854,shirt:color,trim:0xd8c795};
+  const root=new T.Group(),body=clone(this.models[sex]);root.add(body);body.updateMatrixWorld(true);
+  const bounds=new T.Box3().setFromObject(body),baseHeight=bounds.max.y-bounds.min.y,scale=height/baseHeight;
+  body.scale.set(scale*(profile.young?.86:.94),scale,scale*.96);body.position.y=-bounds.min.y*scale;body.updateMatrixWorld(true);
+  const bodyMeshes=[];let skinMesh=null;body.traverse(m=>{if(!m.isMesh)return;m.castShadow=true;m.frustumCulled=false;if(!m.name.toLowerCase().includes('eye')){m.geometry=m.geometry.clone();m.material=material(0xffffff,{vertexColors:true,roughness:.83});bodyMeshes.push(m);if(m.isSkinnedMesh)skinMesh=m;}});
+  let lastOutfit=null;
+  const recolor=outfit=>{if(lastOutfit===outfit)return;lastOutfit=outfit;for(const m of bodyMeshes){const pos=m.geometry.attributes.position,indices=m.geometry.attributes.skinIndex,weights=m.geometry.attributes.skinWeight,colors=[];m.geometry.computeBoundingBox();const top=m.geometry.boundingBox.max.y;for(let i=0;i<pos.count;i++){const y=pos.getY(i)/top;let joint='';if(indices&&weights&&m.skeleton){let best=0;for(let k=1;k<4;k++)if(weights.array[i*4+k]>weights.array[i*4+best])best=k;joint=m.skeleton.bones[indices.array[i*4+best]]?.name||'';}const exposed=/^(Head|neck|hand|lowerarm|index|middle|ring|pinky|thumb)/.test(joint);let c=exposed?profile.skin:y<.09?0x242724:y<.55?(profile.kurta||profile.salwar?0xd6c6a4:0x263e59):outfit==='uniform'?0xe7e4d7:outfit==='festival'?0xd28b35:profile.shirt;if(y>.95||(y>.90&&pos.getZ(i)<.015))c=profile.grey?0xb8b6ab:0x231d19;const co=new T.Color(c);colors.push(co.r,co.g,co.b);}m.geometry.setAttribute('color',new T.Float32BufferAttribute(colors,3));}};recolor('home');
+  // Garments share the imported skeleton and bind matrices.
+  function garment(geometry,mat,bone='pelvis',upper=false){if(!skinMesh)return null;const sk=skinMesh.skeleton,indices=[],weights=[],p=geometry.attributes.position;for(let i=0;i<p.count;i++){const joint=upper&&p.getY(i)>1.12?'spine_02':bone;const index=Math.max(0,sk.bones.findIndex(b=>b.name===joint));indices.push(index,0,0,0);weights.push(1,0,0,0);}geometry.setAttribute('skinIndex',new T.Uint16BufferAttribute(indices,4));geometry.setAttribute('skinWeight',new T.Float32BufferAttribute(weights,4));const m=new T.SkinnedMesh(geometry,mat);m.bind(sk,skinMesh.bindMatrix);m.castShadow=true;m.frustumCulled=false;skinMesh.parent.add(m);return m;}
+  const fabric=material(0xffffff,{map:clothTexture(profile.shirt,profile.trim),side:T.DoubleSide});
+  if(profile.sari){garment(new T.LatheGeometry([new T.Vector2(.36,.13),new T.Vector2(.33,.38),new T.Vector2(.28,.75),new T.Vector2(.22,1.04)],24),fabric);const drape=new T.PlaneGeometry(.28,.55,4,8);drape.rotateZ(-.46);drape.translate(.02,1.23,.20);garment(drape,fabric,'spine_02',true);}
+  const tunic=profile.kurta||profile.salwar||name==='Aarav'?garment(new T.LatheGeometry([new T.Vector2(.27,.62),new T.Vector2(.25,.85),new T.Vector2(.23,1.07)],24),fabric):null;if(tunic&&name==='Aarav'){tunic.visible=false;tunic.material=material(0xffffff,{map:clothTexture(0xd28b35,0xf2d189),side:T.DoubleSide});}
+  if(profile.salwar){const dupatta=new T.PlaneGeometry(.18,.65,2,8);dupatta.translate(-.2,1.12,.19);garment(dupatta,material(profile.trim,{side:T.DoubleSide}),'spine_02');}
+  const head=body.getObjectByName('Head');const addHead=(geo,mat,x,y,z)=>{const m=new T.Mesh(geo,mat);m.position.set(x,y,z);m.castShadow=true;head?.add(m);return m;};
+  const hairMat=material(profile.grey?0xb8b6ab:0x231d19);
+  if(profile.bun)addHead(new T.SphereGeometry(.065,14,10),hairMat,0,.13,-.13);
+  if(profile.braid)for(let i=0;i<6;i++){const b=addHead(new T.SphereGeometry(.03,10,8),hairMat,.025*Math.sin(i*2),-.035*i,-.115);b.scale.y=1.3;}
+  if(profile.sari||profile.salwar){addHead(new T.SphereGeometry(.009,8,6),material(0xb62e27),0,.105,.103);for(const x of [-.115,.115])addHead(new T.TorusGeometry(.014,.003,5,10),material(0xdab76a,{metalness:.65}),x,.04,.015);}
+  if(profile.moustache){const m=addHead(new T.CapsuleGeometry(.012,.065,3,8),hairMat,0,.012,.103);m.rotation.z=Math.PI/2;}
+  if(profile.turban){const m=addHead(new T.SphereGeometry(.135,18,12),material(profile.trim),0,.19,-.01);m.scale.y=.7;}
+  const torso=body.getObjectByName('spine_03'),bag=new T.Group();const bagBody=new T.Mesh(new T.BoxGeometry(.34,.4,.14),material(0x254859));bagBody.position.set(0,.03,-.21);bag.add(bagBody);for(const x of [-.12,.12]){const strap=new T.Mesh(new T.BoxGeometry(.035,.45,.035),material(0x193745));strap.position.set(x,.03,.18);bag.add(strap);}torso?.add(bag);bag.visible=false;
+  // Retarget rotation deltas, retaining target limb lengths. Only the pelvis
+  // carries source translation (relative to its rest pose) for gait bobbing.
+  const mixer=new T.AnimationMixer(body),actions={};
+  for(const clip of this.clips){const tracks=[];for(const tr of clip.tracks){const [boneName,property]=tr.name.split('.'),dest=body.getObjectByName(boneName),source=this.animationRig.getObjectByName(boneName);if(!dest||!source)continue;
+   if(property==='quaternion'){const values=[],delta=dest.quaternion.clone().multiply(source.quaternion.clone().invert());for(let i=0;i<tr.values.length;i+=4){const q=delta.clone().multiply(new T.Quaternion().fromArray(tr.values,i));values.push(q.x,q.y,q.z,q.w);}tracks.push(new T.QuaternionKeyframeTrack(tr.name,tr.times,values));}
+   else if(property==='position'&&boneName==='pelvis'){const values=[];for(let i=0;i<tr.values.length;i+=3)values.push(dest.position.x+(tr.values[i]-source.position.x),dest.position.y+(tr.values[i+1]-source.position.y),dest.position.z+(tr.values[i+2]-source.position.z));tracks.push(new T.VectorKeyframeTrack(tr.name,tr.times,values));}
+  }if(tracks.length)actions[clip.name]=mixer.clipAction(new T.AnimationClip(clip.name,clip.duration,tracks));}
+  let current=null;const play=(name,speed=1)=>{if(!actions[name])name='Idle_Loop';if(current===name){actions[name]?.setEffectiveTimeScale(speed);return;}const next=actions[name];if(!next)return;if(current)actions[current].fadeOut(.18);next.reset().setEffectiveWeight(1).setEffectiveTimeScale(speed).fadeIn(.18).play();current=name;};play('Idle_Loop');
+  return{root,body,mixer,actions,play,bag,name,outfit:outfit=>{recolor(outfit);bag.visible=outfit==='uniform';if(tunic&&name==='Aarav')tunic.visible=outfit==='festival';},update:dt=>mixer.update(dt)};
  }
 }
