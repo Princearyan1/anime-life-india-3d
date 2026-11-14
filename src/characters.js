@@ -4,6 +4,18 @@ import {clone} from 'three/addons/utils/SkeletonUtils.js';
 import {material} from './world.js';
 const base='./public/assets/characters/';
 const profiles={
+ 'Sarpanch':{skin:0x966744,shirt:0xe6dac0,trim:0x9b704a,kurta:true,moustache:true},
+ 'Nurse Asha':{skin:0xa87a56,shirt:0xe8e6dc,trim:0x3b938b,sari:true,bun:true},
+ 'Shelter nurse':{skin:0x996343,shirt:0xe4e1d2,trim:0x43818e,salwar:true,braid:true},
+ 'Sarpanch Leela':{skin:0xb07e59,shirt:0x426d7a,trim:0xe2bb69,sari:true,bun:true},
+ 'Organiser Meena':{skin:0x9d694b,shirt:0xcc7255,trim:0xebbd6f,salwar:true,braid:true},
+ 'Kesar':{skin:0x8e5d3d,shirt:0xd3c4a4,trim:0xb46c39,kurta:true,turban:true,moustache:true},
+ 'Engineer Nandu':{skin:0xa47755,shirt:0x739baf,trim:0x284252,moustache:true},
+ 'Postmaster':{skin:0xa5704f,shirt:0xd5bd8d,trim:0x6c7159,moustache:true},
+ 'Mandi trader':{skin:0x936442,shirt:0xd5a86d,trim:0x635243,kurta:true,moustache:true},
+ 'Depot keeper':{skin:0xb3825c,shirt:0x68837a,trim:0xd5c59f,moustache:true},
+ 'Game host':{skin:0xa57453,shirt:0xa6714e,trim:0xdcc083,kurta:true},
+ 'Iqbal':{skin:0x9d6c49,shirt:0xb5a27d,trim:0x535b4a,moustache:true},
  Aarav:{skin:0xa87450,shirt:0x326a83,trim:0xd8c295,young:true},
  'Sweet seller':{skin:0xa27350,shirt:0xf3dfb0,trim:0xb86631,kurta:true,moustache:true},
  'Tea seller':{skin:0x97623e,shirt:0x99ada0,trim:0x704b33,moustache:true},

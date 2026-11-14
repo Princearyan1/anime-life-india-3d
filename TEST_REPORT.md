@@ -1,3 +1,16 @@
+# Verification report - district edition 0.3
+
+Verified on Windows / Node.js / Chromium WebGL2, 2026-11-14.
+
+- Unit suite: 18 tests covering all 44 missions, six clue gates, finances, legacy Day 2 save migration, journey checkpoints, actual world geometry, all 30 directed auto routes including turns, dynamic bridge closure and regional walking destinations.
+- Browser: the Day 3-4 checkpoint runner completed every new step through collision-aware movement, normal interactions, twelve auto trips and the final ending. The checkpoint generates completed Days 1-2 through the mission engine first.
+- Optional auto UI: chose Mango orchards from Chandanpur, fare fell from 410 to 395, reloaded and continued the journey with balance still 395.
+- Map: region selector, Rampur post-office destination and marked-route message verified.
+- Graphics remain stylized; automated accelerated traversal FPS is not a performance benchmark. No broad GPU/mobile certification.
+- Local assets unchanged from version 0.2; all are bundled for offline serving.
+
+## Historical version 0.2 verification
+
 # Verification report — village edition 0.2
 
 Verified on Windows / Node.js / Chromium WebGL2, 2026-11-14.

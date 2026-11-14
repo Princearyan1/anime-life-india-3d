@@ -2,7 +2,7 @@
 
 [Play in your browser](https://princearyan1.github.io/anime-life-india-3d/) · [GitHub source](https://github.com/Princearyan1/anime-life-india-3d)
 
-Version 0.2 is a playable Three.js village story milestone for Windows desktop browsers. This is a stylized development build, **not a finished AAA game**. Day 1 and Day 2 are implemented; Days 3–10 are not.
+Version 0.3 is a playable Three.js village story milestone for Windows desktop browsers. This is a stylized development build, **not a finished AAA game**. Days 1–4 are implemented (44 missions); Days 5–10 are not.
 
 ## Run on Windows
 
@@ -57,7 +57,7 @@ Reset Progress and New Game ask for confirmation inside the game. Use the pause 
 
 ## Browser integration test
 
-Visit `http://127.0.0.1:5173/?qa=1` and click **Run both chapters**. This opt-in runner uses a separate save key. It navigates with the same character controller and collision tests, invokes normal interactions, runs both bus routes and timed activities, selects a dialogue reply, and reports each step. It accelerates simulation by running multiple updates per rendered frame. It does not teleport between walking objectives. Its FPS is **not a performance benchmark**. See `TEST_REPORT.md` for checks actually performed.
+Visit `http://127.0.0.1:5173/?qa=1` and click **Run all four days**. This opt-in runner uses a separate save key. It navigates with the same character controller and collision tests, invokes normal interactions, runs both bus routes and timed activities, selects a dialogue reply, and reports each step. It accelerates simulation by running multiple updates per rendered frame. It does not teleport between walking objectives. Its FPS is **not a performance benchmark**. See `TEST_REPORT.md` for checks actually performed.
 
 ## Credits and scope
 
@@ -68,3 +68,11 @@ Read `ASSET_CREDITS.md` for licenses and modifications; `KNOWN_LIMITATIONS.md` r
 Seventeen NPCs including both Day 2 sellers, patterned Indian outfits and accessories, smoother jog/sprint animation, bus body collision and cleared road layout, detailed school bus with seats/windows/opening door, asphalt/plaster/bark PBR textures, leaf-card trees, courtyard gate/rangoli/tulsi and improved house trim. Static scenery is batched by material. Graphics remain stylized.
 
 GitHub Actions runs tests, builds the static site and deploys GitHub Pages on pushes to main. The local character inspector is `tests/characters.html` while the development server runs.
+
+## District edition 0.3
+
+Days 1-4 are playable: 44 missions total. A 1.2 km square boundary includes Rampur town, North depot, Neem hamlet, mango orchard and riverside mela. Day 3 adds eight multi-step monsoon relief missions and a bridge repair; Day 4 adds eight orchard, missing-parcel and mela missions. Six clue puzzles, journal notes, twelve story auto journeys and festival lights extend the story.
+
+Press R near any of six green auto stands from Day 3 to choose a destination (15 rupees). Optional rides reserve remaining story expenses. M opens region and destination selectors; close the map to follow minimap directions. Tab shows clues. Completed version 0.2 saves unlock Day 3 on Continue. Reloading during a ride restarts it at departure without charging an optional fare again.
+
+New modules: src/chapters.js (Day 3-4 story), src/district.js (regional scenery and auto), tests/district.test.js (progression, migration, all 30 directed auto routes and real-world navigation).
