@@ -1,0 +1,13 @@
+{
+  "name": "anime-life-india-3d",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/server.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node tests/story.test.js"
+  },
+  "dependencies": {
+    "three": "0.180.0"
+  }
+}
