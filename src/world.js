@@ -35,7 +35,7 @@ export class VillageWorld{
  // Pots and a veranda ledge; the walkable threshold remains clear.
  cylinder(g,-w/2+1,.3,d/2+1.1,.22,.15,.55,material(0xa46b48),14);cylinder(g,w/2-1,.3,d/2+1.1,.23,.17,.6,material(0x9f6c4a),14);
  this.buildings.push({x,z,w,d});return g;}
- makeVillage(){this.house(0,-11,18,10,0xeee0bc,'शर्मा निवास · SHARMA FAMILY');box(this.scene,0,.01,-1,28,.08,17,pbr('plaster',0xc4ad88,7,4));this.homeDetails();
+ makeVillage(){this.house(0,-11,18,10,0xeee0bc,'आर्यन निवास · ARYAN FAMILY');box(this.scene,0,.01,-1,28,.08,17,pbr('plaster',0xc4ad88,7,4));this.homeDetails();
  this.charpai=new T.Group();this.scene.add(this.charpai);for(const x of [-.55,.55])for(const z of [-1,1])cylinder(this.charpai,x,.28,z,.055,.07,.56,this.wood);for(const x of [-.57,.57])box(this.charpai,x,.57,0,.09,.12,2.25,this.wood);for(const z of [-1.05,1.05])box(this.charpai,0,.57,z,1.2,.12,.08,this.wood);for(let z=-1;z<1;z+=.065)box(this.charpai,0,.56,z,1.1,.04,.03,material(0xc4b08a));box(this.charpai,0,.64,.75,.8,.13,.4,material(0xeee1bf));
  cylinder(this.scene,-11,.6,5,.1,.14,1.2,material(0x456962));box(this.scene,-10.7,1.1,5,.7,.1,.1,this.dark);box(this.scene,-11,1.5,5,.09,.7,.09,this.dark).rotation.z=.5;cylinder(this.scene,-10.6,.15,5.5,.25,.19,.3,material(0xa6a89c,{metalness:.5}));box(this.scene,-11,.03,5,3,.09,3,material(0x999e8d));
  for(const [x,z,w,d] of [[-17,-5,.2,4],[-15,-7,4,.2],[-13,-5,.2,4]]){box(this.scene,x,1.1,z,w,2.2,d,this.wall);this.solid(x,z,w,d);}box(this.scene,-15,1.1,-3,3.8,2.2,.05,material(0x42776b));
