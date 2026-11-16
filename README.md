@@ -2,7 +2,7 @@
 
 [Play in your browser](https://princearyan1.github.io/anime-life-india-3d/) · [GitHub source](https://github.com/Princearyan1/anime-life-india-3d)
 
-Version 0.3 is a playable Three.js village story milestone for Windows desktop browsers. This is a stylized development build, **not a finished AAA game**. Days 1–4 are implemented (44 missions); Days 5–10 are not.
+Version 0.4 is a playable Three.js village story milestone for Windows desktop browsers. This is a stylized development build, **not a finished AAA game**. Days 1–6 are implemented (60 missions); Days 7–10 are not.
 
 ## Run on Windows
 
@@ -57,7 +57,7 @@ Reset Progress and New Game ask for confirmation inside the game. Use the pause 
 
 ## Browser integration test
 
-Visit `http://127.0.0.1:5173/?qa=1` and click **Run all four days**. This opt-in runner uses a separate save key. It navigates with the same character controller and collision tests, invokes normal interactions, runs both bus routes and timed activities, selects a dialogue reply, and reports each step. It accelerates simulation by running multiple updates per rendered frame. It does not teleport between walking objectives. Its FPS is **not a performance benchmark**. See `TEST_REPORT.md` for checks actually performed.
+Visit `http://127.0.0.1:5173/?qa=1` and click **Run all six days**. This opt-in runner uses a separate save key. It navigates with the same character controller and collision tests, invokes normal interactions, runs both bus routes and timed activities, selects a dialogue reply, and reports each step. It accelerates simulation by running multiple updates per rendered frame. It does not teleport between walking objectives. Its FPS is **not a performance benchmark**. See `TEST_REPORT.md` for checks actually performed.
 
 ## Credits and scope
 
@@ -76,3 +76,15 @@ Days 1-4 are playable: 44 missions total. A 1.2 km square boundary includes Ramp
 Press R near any of six green auto stands from Day 3 to choose a destination (15 rupees). Optional rides reserve remaining story expenses. M opens region and destination selectors; close the map to follow minimap directions. Tab shows clues. Completed version 0.2 saves unlock Day 3 on Continue. Reloading during a ride restarts it at departure without charging an optional fare again.
 
 New modules: src/chapters.js (Day 3-4 story), src/district.js (regional scenery and auto), tests/district.test.js (progression, migration, all 30 directed auto routes and real-world navigation).
+
+## Frontier edition 0.4
+
+Day 5: water-cooperative investigation, three observation records, compatible-kit puzzle, training sequence, and a 70-second three-checkpoint field trial with free retries. Day 6: heritage station mystery, three-part archive reference, evidence matching, toy-signal sequence and a community exhibition. Sixteen new multi-step missions bring the total to sixty.
+
+The boundary is now 1.8 km square. Suraj reservoir and the heritage station add two auto stops (eight total), fenced water, viewing areas, a filter demonstration, trial walls, archive, disused railway display, clock, museum and memorial garden. The map has a Suraj/station region.
+
+Jog speed is 5 m/s (previously 3.8), sprint is 8 m/s (previously 6.5), walking is 2.8 m/s. Sprint drains stamina more slowly and recovers faster. Movement substeps prevent long frames from skipping colliders; frame time up to 150 ms is retained instead of cutting it at 50 ms. Clock progression defaults to one game minute per four real seconds.
+
+NPC dialogue now begins only after a nearby interaction, not when the next objective activates. The HUD still shows the next destination from a distance. Clothing uses fitted torso/kurta geometry and blended spine/thigh weights; base rigs remain stylized adult stand-ins. Repeated plain materials are shared so scenery batches into fewer draw calls.
+
+Completed version 0.3 Day 4 saves unlock Day 5 automatically on Continue. Same browser/origin required. Tests use a separate QA save.

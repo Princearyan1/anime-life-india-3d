@@ -1,3 +1,15 @@
+# Verification report - frontier edition 0.4
+
+2026-11-16, Windows / Node.js / Chromium WebGL2.
+
+- 20 unit tests passed: all 60 missions, 14 wrong-answer gates, inventory/fare rules, completed Day 2 and Day 4 save migrations, timed-trial failure/retry, all 56 directed auto routes against real building geometry, and regional walking destinations.
+- Day 5-6 browser traversal passed through normal controller collisions, auto journeys, clue choices, deliveries, timed trial and ending. Earlier chapters were generated through the mission engine for this targeted run.
+- Screenshot reproduction: Day 3 at Rampur post office, 47 m from auto stand, correctly shows the objective without the driver's dialogue.
+- Character inspector used to check fitted festival clothing during jog/sprint. Minor clipping remains possible; no photorealism claim.
+- The expanded terrain and new regional props are original procedural meshes; bundled third-party asset licenses are unchanged.
+
+## Historical reports
+
 # Verification report - district edition 0.3
 
 Verified on Windows / Node.js / Chromium WebGL2, 2026-11-14.

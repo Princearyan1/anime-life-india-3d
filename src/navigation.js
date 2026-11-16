@@ -4,7 +4,7 @@ class Heap{
  pop(){const a=this.a,top=a[0],last=a.pop();if(a.length){a[0]=last;let i=0;while(true){let n=i,l=i*2+1,r=l+1;if(l<a.length&&a[l].f<a[n].f)n=l;if(r<a.length&&a[r].f<a[n].f)n=r;if(n===i)break;[a[n],a[i]]=[a[i],a[n]];i=n;}}return top;}get length(){return this.a.length;}
 }
 export function findPath(world,start,goal){
- const size=.75,min=-600,n=1601,cell=v=>Math.round((v-min)/size),pos=(x,z)=>({x:min+x*size,z:min+z*size}),key=(x,z)=>z*n+x;
+ const size=.75,min=-900,n=2401,cell=v=>Math.round((v-min)/size),pos=(x,z)=>({x:min+x*size,z:min+z*size}),key=(x,z)=>z*n+x;
  const sx=cell(start.x),sz=cell(start.z),gx=cell(goal.x),gz=cell(goal.z);if([sx,sz,gx,gz].some(v=>v<0||v>=n))return null;
  const open=new Heap(),previous=new Map(),scores=new Map([[key(sx,sz),0]]),closed=new Set();open.push({x:sx,z:sz,g:0,f:0});let end=null,iterations=0;
  while(open.length&&iterations++<160000){const cur=open.pop(),k=key(cur.x,cur.z);if(closed.has(k))continue;closed.add(k);const wp=pos(cur.x,cur.z);if(Math.hypot(wp.x-goal.x,wp.z-goal.z)<2.4){end=k;break;}

@@ -2,9 +2,9 @@
 export function busFootprint(heading){return{halfX:Math.abs(Math.cos(heading))*1.5+Math.abs(Math.sin(heading))*3.8,halfZ:Math.abs(Math.sin(heading))*1.5+Math.abs(Math.cos(heading))*3.8};}
 export function busHitsBuilding(buildings,x,z,heading){const {halfX,halfZ}=busFootprint(heading);return buildings.some(b=>Math.abs(x-b.x)<halfX+b.w/2+.3&&Math.abs(z-b.z)<halfZ+b.d/2+.3);}
 export function travelRoute(from,to){return[{x:from.x,z:from.z},{x:111,z:16},{x:to.x,z:to.z}];}
-export const autoStops={autoVillage:{x:19,z:16},autoTown:{x:310,z:16},autoDepot:{x:310,z:-160},autoShelter:{x:-280,z:-160},autoFair:{x:250,z:240},autoOrchard:{x:-260,z:240}};
+export const autoStops={autoReservoir:{x:610,z:-160},autoStation:{x:610,z:-440},autoVillage:{x:19,z:16},autoTown:{x:310,z:16},autoDepot:{x:310,z:-160},autoShelter:{x:-280,z:-160},autoFair:{x:250,z:240},autoOrchard:{x:-260,z:240}};
 const nodes={...autoStops,west:{x:-280,z:16},east:{x:250,z:16}};
-const edges=[['west','autoVillage'],['autoVillage','east'],['east','autoTown'],['west','autoShelter'],['autoShelter','autoDepot'],['autoDepot','autoTown'],['east','autoFair'],['autoFair','autoOrchard']];
+const edges=[['autoDepot','autoReservoir'],['autoReservoir','autoStation'],['west','autoVillage'],['autoVillage','east'],['east','autoTown'],['west','autoShelter'],['autoShelter','autoDepot'],['autoDepot','autoTown'],['east','autoFair'],['autoFair','autoOrchard']];
 export function autoRoute(from,to){
  if(!autoStops[from]||!autoStops[to])throw Error('Unknown auto stop');
  const costs={[from]:0},previous={},visited=new Set();
