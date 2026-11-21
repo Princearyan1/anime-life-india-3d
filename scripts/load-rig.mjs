@@ -1,0 +1,3 @@
+import fs from 'node:fs';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+export async function loadRig(file){const b=fs.readFileSync(file),n=b.readUInt32LE(12),j=JSON.parse(b.subarray(20,20+n));j.images=[];j.textures=[];j.materials=[];for(const m of j.meshes||[])for(const p of m.primitives)delete p.material;let json=Buffer.from(JSON.stringify(j));json=Buffer.concat([json,Buffer.alloc((4-json.length%4)%4,32)]);const rest=b.subarray(20+n),out=Buffer.alloc(20+json.length+rest.length);b.copy(out,0,0,12);out.writeUInt32LE(out.length,8);out.writeUInt32LE(json.length,12);out.writeUInt32LE(0x4e4f534a,16);json.copy(out,20);rest.copy(out,20+json.length);return new GLTFLoader().parseAsync(out.buffer.slice(out.byteOffset,out.byteOffset+out.length),'');}

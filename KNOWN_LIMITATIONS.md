@@ -42,3 +42,9 @@
 Days 3-4 include sixteen multi-step missions and twelve required auto journeys. Relief work and bridge repair use interaction/time-skip sequences. The expanded district is stylized and sparsely populated.
 
 Version 0.4 includes Days 5 and 6. The reservoir repair is carried out through a staff observation/time-skip scene; the valve and signal puzzles are demonstration models, not full physical simulations. Character silhouettes and garment deformation are improved, but remain stylized with occasional cloth clipping. No claim of photorealistic character quality or a completed ten-day game.
+
+Version 0.5 uses a sky-derived environment map (not real-time scene reflections), animated water normals (not a water simulation), approximate contact shading, and emissive lamps with ground glows (not individual shadowed lights). Terrain remains flat. Decorations use instancing/batching where practical; more detailed presets can cost FPS.
+
+## v0.5 visual preview
+
+Detailed imported hoodie hero, city bus and broadleaf trees are integrated. Hero now includes seven retargeted idle, seated, crouch, jump and interaction clips; NPCs retain their prior rigs. Wardrobe changes recolor the hoodie rather than change its mesh. Tree visibility is distance culled, not continuous mesh LOD. This preview passed 21 automated gameplay/model tests and static build; browser visual/performance checks are still pending. See public/assets/reference/CREDITS.md for provenance.

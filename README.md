@@ -2,7 +2,7 @@
 
 [Play in your browser](https://princearyan1.github.io/anime-life-india-3d/) · [GitHub source](https://github.com/Princearyan1/anime-life-india-3d)
 
-Version 0.4 is a playable Three.js village story milestone for Windows desktop browsers. This is a stylized development build, **not a finished AAA game**. Days 1–6 are implemented (60 missions); Days 7–10 are not.
+Version 0.5 is a playable Three.js village story milestone for Windows desktop browsers. This is a stylized development build, **not a finished AAA game**. Days 1–6 are implemented (60 missions); Days 7–10 are not.
 
 ## Run on Windows
 
@@ -88,3 +88,13 @@ Jog speed is 5 m/s (previously 3.8), sprint is 8 m/s (previously 6.5), walking i
 NPC dialogue now begins only after a nearby interaction, not when the next objective activates. The HUD still shows the next destination from a distance. Clothing uses fitted torso/kurta geometry and blended spine/thigh weights; base rigs remain stylized adult stand-ins. Repeated plain materials are shared so scenery batches into fewer draw calls.
 
 Completed version 0.3 Day 4 saves unlock Day 5 automatically on Continue. Same browser/origin required. Tests use a separate QA save.
+
+## Visual update 0.5
+
+Sky-based environment reflections, rippling canal/reservoir normals, wind-driven leaf cards and hanging laundry, curved instanced clay roof tiles on larger buildings, deep window sills and glazing, dusty entrance aprons, contact shading, gravel shoulders, shrubs, utility lines, market crates, warm exterior lanterns and night-time light pools. Rain reduces road roughness; paved surfaces now sit above crossing dirt tracks to remove overlap patches.
+
+Low quality omits the extra tile, gravel and shrub instances. These are decorative changes: mission targets, vehicle routes, collision boundaries and save format are retained. Visuals remain stylized; this is not photorealistic rendering or a new character asset pack.
+
+### v0.5 visual preview assets
+
+Adds an imported textured hoodie/backpack player with walk/run clips, a detailed yellow bus, and instanced broadleaf trees. Asset credits: [reference asset credits](public/assets/reference/CREDITS.md). Browser visual QA is pending; hero seated/jump/crouch clips are retargeted; wardrobe changes recolor the hoodie rather than replace clothing geometry.

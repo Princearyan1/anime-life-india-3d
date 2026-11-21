@@ -1,3 +1,4 @@
+import {createReferenceHero} from './reference-assets.js';
 import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {clone} from 'three/addons/utils/SkeletonUtils.js';
@@ -40,6 +41,7 @@ function clothTexture(color,trim){const c=document.createElement('canvas');c.wid
 export class Characters{
  async load(progress){const l=new GLTFLoader();let n=0;const data=await Promise.all(['Superhero_Male_FullBody.gltf','Superhero_Female_FullBody.gltf','animations.glb'].map(f=>l.loadAsync(base+f).then(v=>{progress(++n/3);return v;})));this.models={male:data[0].scene,female:data[1].scene};this.clips=data[2].animations;this.animationRig=data[2].scene;}
  create(sex='male',color=0x759a8a,height=1.75,name='Aarav'){
+  if(name==='Aarav'&&this.referenceHero)return createReferenceHero(this.referenceHero,height,name);
   const profile=profiles[name]||{skin:0xa87854,shirt:color,trim:0xd8c795};
   const root=new T.Group(),body=clone(this.models[sex]);root.add(body);body.updateMatrixWorld(true);
   const bounds=new T.Box3().setFromObject(body),baseHeight=bounds.max.y-bounds.min.y,scale=height/baseHeight;

@@ -1,0 +1,59 @@
+{
+  "slug": "strangler-fig",
+  "name": "Strangler Fig",
+  "category": "trees",
+  "tags": [
+    "aerial roots",
+    "banyan",
+    "buttress roots",
+    "fig",
+    "giant",
+    "jungle",
+    "nature",
+    "rainforest",
+    "strangler fig",
+    "tree",
+    "tropical"
+  ],
+  "description": "Giant strangler fig about 19 m tall with a crown 27 m across, for jungle scenes. Its grey trunk is a net of fused roots flaring into plank buttresses, braided pillar roots prop the great limbs, and curtains of aerial roots hang under a broad, dense crown of glossy leaves and small figs.",
+  "license": "CC0-1.0",
+  "version": 1,
+  "changes": "First release.",
+  "created": "2026-11-07",
+  "updated": "2026-11-07",
+  "units": "meters",
+  "up": "+Y",
+  "forward": "+Z",
+  "dimensions": {
+    "x": 26.969,
+    "y": 19.307,
+    "z": 27.68
+  },
+  "parts": [],
+  "animations": [],
+  "wind": true,
+  "preview": "/models/strangler-fig/v1/preview.webp",
+  "files": [
+    {
+      "lod": 0,
+      "path": "/models/strangler-fig/v1/lod0.glb",
+      "bytes": 4024668,
+      "sha256": "f2fa40334fe07166fb4b29124119ebb8b3872a09c5126e5a671b8b861b70ae4c",
+      "triangles": 107252
+    },
+    {
+      "lod": 1,
+      "path": "/models/strangler-fig/v1/lod1.glb",
+      "bytes": 1419024,
+      "sha256": "950573ff7b917d49b13f4c61e4f4b03f7544c3cccb472ced5f280d3be7141aed",
+      "triangles": 30560
+    },
+    {
+      "lod": 2,
+      "path": "/models/strangler-fig/v1/lod2.glb",
+      "bytes": 470564,
+      "sha256": "8867c5cfa752f5684cc5168bf3ceff4d497fac707bba7f687219c6eaeb633b10",
+      "triangles": 5480
+    }
+  ]
+}

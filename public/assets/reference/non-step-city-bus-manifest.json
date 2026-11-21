@@ -1,0 +1,69 @@
+{
+  "slug": "non-step-city-bus",
+  "name": "Non-step City Bus",
+  "category": "vehicles",
+  "tags": [
+    "vehicle",
+    "bus",
+    "city bus",
+    "public transport",
+    "low floor",
+    "non-step",
+    "japan",
+    "asia",
+    "traffic"
+  ],
+  "description": "Two-axle low-floor city bus, 11.0 m long, 2.49 m wide and 3.05 m tall, built for left-side kerbs. Cream with a dark green skirt and a lime stripe, a blank lit destination panel front, side and rear, and three doors: a folding front door and two sliding doors.",
+  "license": "CC0-1.0",
+  "version": 1,
+  "changes": "First release.",
+  "created": "2026-11-06",
+  "updated": "2026-11-06",
+  "units": "meters",
+  "up": "+Y",
+  "forward": "+Z",
+  "dimensions": {
+    "x": 3.052,
+    "y": 3.054,
+    "z": 11.39
+  },
+  "parts": [
+    "wheel_FL",
+    "wheel_FR",
+    "wheel_RL",
+    "wheel_RR",
+    "steer_FL",
+    "steer_FR",
+    "steering_wheel",
+    "door_front_a",
+    "door_front_b",
+    "door_mid",
+    "door_rear"
+  ],
+  "animations": [],
+  "wind": false,
+  "preview": "/models/non-step-city-bus/v1/preview.webp",
+  "files": [
+    {
+      "lod": 0,
+      "path": "/models/non-step-city-bus/v1/lod0.glb",
+      "bytes": 646224,
+      "sha256": "7d18b7f8a87c3e451456ba117fd8bd84ad2d702fc5f76c4ef9def7b898978fad",
+      "triangles": 36395
+    },
+    {
+      "lod": 1,
+      "path": "/models/non-step-city-bus/v1/lod1.glb",
+      "bytes": 278332,
+      "sha256": "29ebed6e7523d2cb08620c19aaa45bccb07eb159a57934ec0d64f248f74af527",
+      "triangles": 13102
+    },
+    {
+      "lod": 2,
+      "path": "/models/non-step-city-bus/v1/lod2.glb",
+      "bytes": 113620,
+      "sha256": "1a6255be20c598ba45b1e76ee308e1245c1323920027e2e613d88804dd550653",
+      "triangles": 4534
+    }
+  ]
+}

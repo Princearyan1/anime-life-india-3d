@@ -1,0 +1,59 @@
+{
+  "slug": "plane-tree",
+  "name": "Plane Tree",
+  "category": "trees",
+  "tags": [
+    "tree",
+    "plane tree",
+    "london plane",
+    "sycamore",
+    "broadleaf",
+    "deciduous",
+    "street tree",
+    "avenue",
+    "city",
+    "park",
+    "boulevard"
+  ],
+  "description": "Mature street plane tree, about 22 m tall, with a tall, clear trunk of flaking bark mottled grey, olive and cream. Wide, slightly crooked limbs carry a broad, domed crown of large, maple-like leaves and bristly seed balls hanging on long stalks.",
+  "license": "CC0-1.0",
+  "version": 1,
+  "changes": "First release.",
+  "created": "2026-10-29",
+  "updated": "2026-10-29",
+  "units": "meters",
+  "up": "+Y",
+  "forward": "+Z",
+  "dimensions": {
+    "x": 19.891,
+    "y": 22.464,
+    "z": 19.09
+  },
+  "parts": [],
+  "animations": [],
+  "wind": true,
+  "preview": "/models/plane-tree/v1/preview.webp",
+  "files": [
+    {
+      "lod": 0,
+      "path": "/models/plane-tree/v1/lod0.glb",
+      "bytes": 4209764,
+      "sha256": "c32b9fe0ec875a7adaca31fb5e0b5a7a7afb042d5518515c6de5813c7459f2cc",
+      "triangles": 35238
+    },
+    {
+      "lod": 1,
+      "path": "/models/plane-tree/v1/lod1.glb",
+      "bytes": 1646584,
+      "sha256": "b2d491951d710e77216bb014b904eee10da1618fba65ef8efd1e5abab1bdd24a",
+      "triangles": 20272
+    },
+    {
+      "lod": 2,
+      "path": "/models/plane-tree/v1/lod2.glb",
+      "bytes": 563224,
+      "sha256": "76001c5667fb27e2e3da3d9b512ab33a2108dd67bb98231ec69f55f069158da2",
+      "triangles": 4736
+    }
+  ]
+}
